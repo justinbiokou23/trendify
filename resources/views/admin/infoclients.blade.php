@@ -223,7 +223,6 @@
   </div>
 </section>
 
-
 @vite('resources/js/orders-script.js')
 @endsection
 

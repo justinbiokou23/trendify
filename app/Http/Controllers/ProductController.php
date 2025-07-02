@@ -12,9 +12,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $produits = \App\Models\Product::latest()->take(8)->get();
-
-        return view('index', compact('produits'));
+        // On récupère tous les produits (tu peux ajouter ->with('categorie') si besoin)
+        $produits = Product::latest()->get();
+        return view('produit', compact('produits'));
     }
 
 
@@ -37,10 +37,18 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
-    {
-        //
-    }
+   public function show($id)
+{
+    // On récupère le produit (avec la catégorie, si tu veux)
+    $produit = \App\Models\Product::with('categorie')->findOrFail($id);
+
+    // Suggestions : 4 produits au hasard (sauf celui affiché)
+    $suggestions = \App\Models\Product::where('id', '!=', $id)->inRandomOrder()->take(4)->get();
+
+    // Tu peux aussi charger d’autres infos (avis, FAQ, etc.)
+    return view('produit_details', compact('produit', 'suggestions'));
+}
+
 
     /**
      * Show the form for editing the specified resource.

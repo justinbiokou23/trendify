@@ -70,28 +70,36 @@
                 </div>
 
                 <!-- Panier -->
-                <div class="relative">
-                <button onclick="toggleCart()" class="text-xl">🛒</button>
-                <span
-                    class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
-                    >2</span
-                >
-                <div
-                    id="cartDropdown"
-                    class="hidden absolute right-0 top-10 w-64 bg-white shadow-md rounded border p-4 z-30"
-                >
-                    <p class="font-semibold mb-2">Votre panier</p>
-                    <ul class="text-sm space-y-2">
-                    <li>Produit A - XOF 30.000</li>
-                    <li>Produit B - XOF 26.000</li>
-                    </ul>
-                    <button
-                    class="mt-4 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"
-                    >
-                    Voir le panier
-                    </button>
-                </div>
-                </div>
+<div class="relative">
+    <button onclick="toggleCart()" class="text-xl">🛒</button>
+    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+        {{ $cartCount ?? 0 }}
+    </span>
+    <div
+        id="cartDropdown"
+        class="hidden absolute right-0 top-10 w-64 bg-white shadow-md rounded border p-4 z-30"
+    >
+        <p class="font-semibold mb-2">Votre panier</p>
+        <ul class="text-sm space-y-2">
+        @if($cartCount > 0 && $panier && count($panier))
+            @foreach($panier as $item)
+                <li>
+                  {{ $item['nom'] }} - {{ number_format($item['prix'], 0, ',', ' ') }} FCFA (x{{ $item['quantite'] }})
+                </li>
+            @endforeach
+        @else
+            <li>Votre panier est vide</li>
+        @endif
+        </ul>
+        <a href="{{ route('panier') }}">
+        <button class="mt-4 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600">
+            Voir le panier
+        </button>
+        </a>
+    </div>
+</div>
+
+
 
                 <!-- Profil -->
             <div class="relative">

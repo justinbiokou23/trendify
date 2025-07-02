@@ -8,11 +8,25 @@ use App\Http\Controllers\Admin\ProduitController;
 use App\Http\Controllers\Admin\CommandeController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\PanierController;
+
 
 // Accueil, Contact, À propos
 Route::view('/', 'index')->name('index');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/a-propos', 'a_propos')->name('a_propos');
+Route::view('/panier', 'panier')->name('panier');
+// Route::view('/produit', 'produit')->name('produit');
+// Route::view('/produit_details', 'produit_details')->name('produit_details');
+// Page d'accueil
+Route::get('/', [App\Http\Controllers\AccueilController::class, 'index'])->name('index');
+
+// Liste complète des produits
+Route::get('/produits', [App\Http\Controllers\ProductController::class, 'index'])->name('produit');
+
+// Détail d’un produit
+Route::get('/produit/{produit}', [App\Http\Controllers\ProductController::class, 'show'])->name('produit_details');
+
 
 // Auth (Register)
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -41,8 +55,14 @@ Route::get('/admin/transactions', [TransactionController::class, 'index'])->name
 Route::prefix('admin/produits')->name('admin.produits.')->middleware('auth')->group(function () {
     Route::get('/', [ProduitController::class, 'index'])->name('index');
     Route::get('/ajouter', [ProduitController::class, 'create'])->name('create');
+    Route::get('/produits', [ProduitController::class, 'produit'])->name('produits.index');
     Route::post('/ajouter', [ProduitController::class, 'store'])->name('store');
     Route::get('/{produit}/edit', [ProduitController::class, 'edit'])->name('edit');
     Route::put('/{produit}', [ProduitController::class, 'update'])->name('update');
     Route::delete('/{produit}', [ProduitController::class, 'destroy'])->name('destroy');
 });
+
+Route::get('/panier', [PanierController::class, 'index'])->name('panier');
+Route::post('/panier/ajouter/{id}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+Route::post('/panier/modifier/{id}', [PanierController::class, 'modifier'])->name('panier.modifier');
+Route::post('/panier/supprimer/{id}', [PanierController::class, 'supprimer'])->name('panier.supprimer');

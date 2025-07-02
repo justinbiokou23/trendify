@@ -28,16 +28,22 @@ function changeImage(index) {
   currentImageIndex = index;
   updateImageDisplay();
 }
+window.changeImage = changeImage;
+
 
 function prevImage() {
   currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
   updateImageDisplay();
 }
+window.prevImage = prevImage;
+
 
 function nextImage() {
   currentImageIndex = (currentImageIndex + 1) % images.length;
   updateImageDisplay();
 }
+window.nextImage = nextImage;
+
 
 function updateQty(amount) {
   const input = document.getElementById("quantity");
@@ -45,6 +51,7 @@ function updateQty(amount) {
   value = Math.max(1, value + amount);
   input.value = value;
 }
+window.updateQty = updateQty;
 
 document.addEventListener("DOMContentLoaded", () => {
   updateImageDisplay();
@@ -72,3 +79,4 @@ function showTabSection(tab, event) {
   // Afficher le bon contenu
   document.getElementById(`tab-${tab}`).classList.remove('hidden');
 }
+window.showTabSection = showTabSection;

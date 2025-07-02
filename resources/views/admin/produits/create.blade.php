@@ -51,7 +51,15 @@
         <div>
             <label for="image" class="block mb-1">Image</label>
             <input type="file" name="image" accept="image/*" class="w-full border rounded px-3 py-2" required>
+            
+            <input type="hidden" name="promo_semaine" value="0">
+            <label>
+                <input type="checkbox" name="promo_semaine" value="1" {{ old('promo_semaine', $produit->promo_semaine) ? 'checked' : '' }}>
+                Promo de la semaine
+            </label>
         </div>
+
+
 
         <button type="submit" class="bg-primary text-white px-6 py-2 rounded">Ajouter</button>
     </form>

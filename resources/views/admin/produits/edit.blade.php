@@ -57,6 +57,14 @@
             @endif
         </div>
 
+        <div>
+            <input type="hidden" name="promo_semaine" value="0">
+            <label>
+                <input type="checkbox" name="promo_semaine" value="1" {{ old('promo_semaine', $produit->promo_semaine) ? 'checked' : '' }}>
+                Promo de la semaine
+            </label>
+        </div>
+
         <button type="submit" class="bg-primary text-white px-6 py-2 rounded">Enregistrer</button>
     </form>
 </div>

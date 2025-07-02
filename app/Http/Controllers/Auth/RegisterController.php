@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
     // Authentifier et rediriger
     //Auth::login($user);
-    return redirect()->route('index');
+    return redirect()->route('login');
 }
 
 }

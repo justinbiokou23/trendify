@@ -1,24 +1,24 @@
 // 🔍 Recherche dynamique
 function handleSearch(value) {
   const results = document.getElementById("searchResults");
-  results.classList.toggle("hidden", value.trim() === "");
+  results?.classList.toggle("hidden", value.trim() === "");
 }
 
 // 🛒 Panier
 function toggleCart() {
-  document.getElementById("cartDropdown").classList.toggle("hidden");
-  document.getElementById("profileDropdown").classList.add("hidden");
+  document.getElementById("cartDropdown")?.classList.toggle("hidden");
+  document.getElementById("profileDropdown")?.classList.add("hidden");
 }
 
 // 👤 Profil
 function toggleProfile() {
-  document.getElementById("profileDropdown").classList.toggle("hidden");
-  document.getElementById("cartDropdown").classList.add("hidden");
+  document.getElementById("profileDropdown")?.classList.toggle("hidden");
+  document.getElementById("cartDropdown")?.classList.add("hidden");
 }
 
 // 📱 Menu mobile
 function toggleMobileMenu() {
-  document.getElementById("mobileMenu").classList.toggle("hidden");
+  document.getElementById("mobileMenu")?.classList.toggle("hidden");
 }
 
 // 🚫 Fermer les dropdowns si clic en dehors
@@ -30,12 +30,11 @@ window.addEventListener("click", function (e) {
     !e.target.closest("#profileDropdown") &&
     !e.target.closest("#searchResults")
   ) {
-    document.getElementById("cartDropdown").classList.add("hidden");
-    document.getElementById("profileDropdown").classList.add("hidden");
-    document.getElementById("searchResults").classList.add("hidden");
+    document.getElementById("cartDropdown")?.classList.add("hidden");
+    document.getElementById("profileDropdown")?.classList.add("hidden");
+    document.getElementById("searchResults")?.classList.add("hidden");
   }
 });
-
 
 // 🔁 Toggle individuel
 document.querySelectorAll('[data-toggle="section"]').forEach(toggle => {
@@ -43,9 +42,8 @@ document.querySelectorAll('[data-toggle="section"]').forEach(toggle => {
     const section = toggle.closest('[data-section]');
     const content = section.querySelector('[data-content]');
     const arrow = section.querySelector('.arrow');
-
-    content.classList.toggle('hidden');
-    arrow.classList.toggle('rotate-180');
+    content?.classList.toggle('hidden');
+    arrow?.classList.toggle('rotate-180');
   });
 });
 
@@ -54,7 +52,6 @@ document.getElementById("toggle-all-filters")?.addEventListener("click", () => {
   document.querySelectorAll('[data-section]').forEach(section => {
     const content = section.querySelector('[data-content]');
     const arrow = section.querySelector('.arrow');
-
     const isHidden = content.classList.contains('hidden');
     content.classList.toggle('hidden');
     arrow.classList.toggle('rotate-180', isHidden);
@@ -102,10 +99,10 @@ document.addEventListener("mousemove", (e) => {
 });
 
 function updatePrices() {
-  const min = Math.round(mapRange(parseFloat(minThumb.style.left || "25"), 0, 100, 50000, 200000));
-  const max = Math.round(mapRange(parseFloat(maxThumb.style.left || "75"), 0, 100, 50000, 200000));
-  minLabel.textContent = `XOF ${min.toLocaleString('fr-FR')}`;
-  maxLabel.textContent = `XOF ${max.toLocaleString('fr-FR')}`;
+  const min = Math.round(mapRange(parseFloat(minThumb?.style.left || "25"), 0, 100, 50000, 200000));
+  const max = Math.round(mapRange(parseFloat(maxThumb?.style.left || "75"), 0, 100, 50000, 200000));
+  if (minLabel) minLabel.textContent = `XOF ${min.toLocaleString('fr-FR')}`;
+  if (maxLabel) maxLabel.textContent = `XOF ${max.toLocaleString('fr-FR')}`;
 }
 
 function mapRange(value, inMin, inMax, outMin, outMax) {
@@ -116,12 +113,15 @@ function mapRange(value, inMin, inMax, outMin, outMax) {
 function scrollNewArrivals(direction) {
   const slider = document.getElementById("newArrivalsSlider");
   const scrollAmount = 300;
+  if (!slider) return;
   if (direction === "left") {
     slider.scrollLeft -= scrollAmount;
   } else if (direction === "right") {
     slider.scrollLeft += scrollAmount;
   }
 }
+window.scrollNewArrivals = scrollNewArrivals;
+
 
 // ✅ Onglets "Nos Produits"
 function showTab(tabName, event = null) {
@@ -138,7 +138,7 @@ function showTab(tabName, event = null) {
 }
 
 let currentTabIndex = 0;
-const tabNames = ["maison", "cuisine", "quotidien"];
+const tabNames = ["materiel", "ordinateurs", "smartphones"];
 
 function nextTab() {
   currentTabIndex = (currentTabIndex + 1) % tabNames.length;
@@ -146,6 +146,8 @@ function nextTab() {
   const button = document.querySelector(`.tab-link[onclick*="${tab}"]`);
   showTab(tab, { target: button });
 }
+window.nextTab = nextTab;
+
 
 function prevTab() {
   currentTabIndex = (currentTabIndex - 1 + tabNames.length) % tabNames.length;
@@ -153,13 +155,13 @@ function prevTab() {
   const button = document.querySelector(`.tab-link[onclick*="${tab}"]`);
   showTab(tab, { target: button });
 }
-
-
+window.prevTab = prevTab;
+// ⚡️ Expose les fonctions au scope global pour HTML
 window.handleSearch = handleSearch;
 window.toggleCart = toggleCart;
 window.toggleProfile = toggleProfile;
 window.toggleMobileMenu = toggleMobileMenu;
-window.scrollNewArrivals = scrollNewArrivals;
 window.showTab = showTab;
+window.scrollNewArrivals = scrollNewArrivals;
 window.nextTab = nextTab;
 window.prevTab = prevTab;

@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom', 'description', 'prix', 'image', 'stock', 'categorie_id',
+        'nom', 'description', 'prix', 'image', 'stock', 'categorie_id','promo_semaine'
     ];
 
     // 🔗 Produit appartient à une catégorie

@@ -89,14 +89,15 @@
           <input type="text" placeholder="Code promo" class="flex-1 outline-none text-sm-custom px-2" />
           <button class="text-gray-500 text-xl">🏷️</button>
         </div>
-        <a href="">
-          <button class="mt-4 w-full bg-green_p text-white py-2 rounded hover:bg-green-400 text-sm-custom">Procéder au paiement</button>
-        </a>
+<form action="{{ route('adresse') }}" method="GET">
+    <button type="submit" class="mt-4 w-full bg-green_p text-white py-2 rounded hover:bg-green-400 text-sm-custom">
+        Procéder au paiement
+    </button>
+</form>
+
       </div>
     </div>
   </div>
 </section>
-
-@vite('resources/js/pannier.js')
 @endsection
 

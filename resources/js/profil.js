@@ -1,52 +1,82 @@
+// ------------------------
+// Onglet général / commandes
+// ------------------------
 function showTab(tab) {
-  // Stocke le choix dans localStorage
+  // Stocke l'onglet actif dans localStorage
   localStorage.setItem("ongletActif", tab);
 
-  // Masque tous les onglets
-  document.getElementById("profil-general").classList.add("hidden");
-  document.getElementById("profil-commandes").classList.add("hidden");
+  // Onglet cible (par défaut 'general')
+  const onglets = ['general', 'commandes'];
+  onglets.forEach(name => {
+    const section = document.getElementById("profil-" + name);
+    if (section) {
+      section.classList.add("hidden");
+    }
+  });
+  // Affiche l'onglet choisi
+  const activeSection = document.getElementById("profil-" + tab);
+  if (activeSection) activeSection.classList.remove("hidden");
 
-  // Affiche l'onglet cliqué
-  document.getElementById("profil-" + tab).classList.remove("hidden");
-
-  // Réinitialise les styles des boutons
+  // Réinitialise styles des boutons
   document.querySelectorAll(".tab-link").forEach(btn => {
     btn.classList.remove("text-black", "border-b-2", "border-black");
     btn.classList.add("text-gray-500");
   });
 
-  // Active le bon bouton
-  const btnToActivate = [...document.querySelectorAll(".tab-link")].find(btn =>
-    btn.textContent.toLowerCase().includes(tab === "general" ? "général" : "détails")
-  );
-
-  if (btnToActivate) {
-    btnToActivate.classList.remove("text-gray-500");
-    btnToActivate.classList.add("text-black", "border-b-2", "border-black");
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const onglet = localStorage.getItem("ongletActif") || "general";
-  showTab(onglet);
-});
-
-// Pour l'appeler depuis le HTML
-window.showTab = showTab;
-
-// Optionnel pour filtrer le tableau
-function filterStatus(status) {
-  document.querySelectorAll(".status-btn").forEach(btn => btn.classList.remove("active-status"));
-  event.target.classList.add("active-status");
-
-  const rows = document.querySelectorAll("#orderTable tr");
-  rows.forEach(row => {
-    const text = row.innerText;
-    if (status === "all" || text.includes(status)) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
+  // Active le bouton qui correspond au tab sélectionné
+  document.querySelectorAll(".tab-link").forEach(btn => {
+    // On cherche sur 'general' ou 'commandes'
+    if ((tab === "general" && btn.textContent.toLowerCase().includes("général"))
+      || (tab === "commandes" && btn.textContent.toLowerCase().includes("commandes"))) {
+      btn.classList.remove("text-gray-500");
+      btn.classList.add("text-black", "border-b-2", "border-black");
     }
   });
 }
-window.filterStatus = filterStatus;
+
+// Accessible partout
+window.showTab = showTab;
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Si l'onglet n'existe pas en localStorage, on met 'general'
+  let onglet = localStorage.getItem("ongletActif");
+  if (!onglet || !['general','commandes'].includes(onglet)) {
+    onglet = "general";
+    localStorage.setItem("ongletActif", "general");
+  }
+  showTab(onglet);
+
+  // ------------------------
+  // Filtrage statut commandes
+  // ------------------------
+  window.filterStatus = function(status) {
+    document.querySelectorAll(".status-btn").forEach(btn => btn.classList.remove("active-status"));
+    event.target.classList.add("active-status");
+
+    const rows = document.querySelectorAll("#orderTable tr");
+    rows.forEach(row => {
+      const text = row.innerText;
+      if (status === "all" || text.includes(status)) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  };
+
+  // ------------------------
+  // Preview photo (édition)
+  // ------------------------
+  const photoInput = document.getElementById('photoInput');
+  if (photoInput) {
+    photoInput.addEventListener('change', function(e) {
+      if (e.target.files && e.target.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(ev) {
+          document.getElementById('previewImage').src = ev.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+  }
+});

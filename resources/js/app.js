@@ -13,6 +13,7 @@ import './dashboard.js';
 import './details_produit.js';
 import './orders-script.js';
 import './paiement.js';
+import './adresse.js';
 // etc.
 
 

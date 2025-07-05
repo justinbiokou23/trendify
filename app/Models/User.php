@@ -2,22 +2,27 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable, HasFactory;
 
     protected $fillable = [
-        'name', 'email','phone', 'password', 'role', 'status',
+        'name',
+        'email',
+        'telephone',
+        'sexe',
+        'date_naissance',
+        'photo',
+        'password',
+        'role',
+        'status',
     ];
-
-    // 🔗 Un utilisateur peut passer plusieurs commandes
-    public function orders()
+    public function adresses()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(\App\Models\Adresse::class);
     }
 }

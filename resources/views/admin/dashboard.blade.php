@@ -13,7 +13,7 @@
       <a href="{{route('admin.commandes')}}" class="flex items-center gap-2 text-gray-500 hover:text-black">
         <img src="{{ asset('assets/image/icones/gestion_commandes.png') }}" class="w-4 h-4" /> Gestion des commandes
       </a>
-      <a href="{{route('admin.infoclients')}}" class="flex items-center gap-2 text-gray-500 hover:text-black">
+      <a href="{{route('admin.clients.index')}}" class="flex items-center gap-2 text-gray-500 hover:text-black">
         <img src="{{ asset('assets/image/icones/clients.png') }}" class="w-4 h-4" /> Clients
       </a>
       <a href="{{route('admin.transactions')}}" class="flex items-center gap-2 text-gray-500 hover:text-black">

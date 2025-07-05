@@ -86,7 +86,7 @@
       <div class="bg-white p-4 rounded shadow hover:shadow-md transition">
         <a href="{{ route('produit_details', $produit->id) }}">
           <img src="{{ asset('storage/'.$produit->image) }}"
-               class="w-full h-40 object-cover rounded mb-3"
+               class="w-auto h-40 object-cover rounded mb-3"
                alt="{{ $produit->nom }}" />
         </a>
         <h3 class="text-sm font-medium mb-1">{{ $produit->nom }}</h3>

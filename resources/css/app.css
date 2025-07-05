@@ -5,3 +5,9 @@
 /* Cache scrollbar pour tous les navigateurs */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .step {
+    color: #a0aec0;
+  }
+  .active-step {
+    color: #000000;
+  }

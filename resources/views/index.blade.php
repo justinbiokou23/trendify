@@ -36,7 +36,7 @@
                         <img src="{{ asset('storage/'.$produit->image) }}" alt="Produit" class="h-24 w-full object-contain mx-auto mb-2"/>
                         <form action="{{ route('panier.ajouter', $produit->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class=" text-primary text-sm-custom  py-1 rounded hover:bg-blue-400">
+                        <button type="submit" class=" text-primary text-sm-custom  py-1 rounded">
                             Ajouter au panier
                         </button>
                         </form>

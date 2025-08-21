@@ -73,11 +73,11 @@
           <span>Total</span>
           <span>{{ session('panier_total_final', 0) }} FCFA</span>
         </div>
-<form action="{{ route('commande.livraison') }}" method="GET">
-    <button type="submit" class="mt-4 w-full bg-green_p text-white py-2 rounded hover:bg-green-400 text-sm-custom">
-        Continuer vers livraison
-    </button>
-</form>
+      <form action="{{ route('commande.livraison') }}" method="GET">
+          <button type="submit" class="mt-4 w-full bg-green_p text-white py-2 rounded hover:bg-green-400 text-sm-custom">
+              Continuer vers livraison
+          </button>
+      </form>
       </div>
     </div>
   </div>

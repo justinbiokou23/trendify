@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  window.filterStatus = filterStatus;
   // ------------------------
   // Preview photo (édition)
   // ------------------------

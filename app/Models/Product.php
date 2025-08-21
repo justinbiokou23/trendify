@@ -10,8 +10,22 @@ class Product extends Model
 {
     use HasFactory;
 
+  protected $table = 'products';
+
     protected $fillable = [
-        'nom', 'description', 'prix', 'image', 'stock', 'categorie_id','promo_semaine'
+        'nom',
+        'description',
+        'prix',
+        'stock',
+        'image',
+        'categorie_id',
+        'promo_semaine',
+    ];
+
+    protected $casts = [
+        'promo_semaine' => 'boolean',
+        'prix' => 'float',
+        'stock' => 'integer',
     ];
 
     // 🔗 Produit appartient à une catégorie

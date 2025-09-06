@@ -12,15 +12,17 @@
   </div>
 
   <!-- Onglets navigation -->
-  <div class="flex gap-6 border-b mb-6 text-sm-custom font-semibold">
-    <button class="tab-link text-blue-600 border-b-2 border-blue-600 pb-2 text-xl" onclick="filterStatus('en_attente')">En attente</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('confirme')">Confirmé</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('traitement')">Traitement</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('rembourse')">Remboursé</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('expedie')">Expédié</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('livre')">Livré</button>
-    <button class="tab-link text-gray-500 pb-2 text-xl" onclick="filterStatus('annule')">Annulé</button>
-  </div>
+<!-- Onglets navigation -->
+<div class="flex gap-6 border-b mb-6 text-sm-custom font-semibold">
+  <button type="button" class="tab-link text-blue-600 border-b-2 border-blue-600 pb-2 text-xl" data-status="en_attente">En attente</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="confirme">Confirmé</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="traitement">Traitement</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="rembourse">Remboursé</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="expedie">Expédié</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="livre">Livré</button>
+  <button type="button" class="tab-link text-gray-500 pb-2 text-xl" data-status="annule">Annulé</button>
+</div>
+
 
   <!-- Recherche + filtre -->
   <div class="flex justify-between items-center mb-4">

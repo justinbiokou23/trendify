@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
             <!-- LOGO -->
-            <div class="text-2xl  text-gray-900">Trendify</div>
+            <div class="text-2xl  text-gray-900"><a href="{{ route('index') }}">Trendify</a></div>
 
             <!-- NAVIGATION (desktop) -->
             <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
